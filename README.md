@@ -164,7 +164,7 @@ Inclui atalhos e comandos específicos para:
 
 ## Licença
 
-Este material foi desenvolvido pela Conatus Technologies.
+Para toda Humanidade.
 
 ---
 
