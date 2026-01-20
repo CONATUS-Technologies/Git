@@ -1,0 +1,571 @@
+================================================================================
+
+                    	COMANDOS GIT PARA GITHUB
+           
+================================================================================
+
+
+
+================================================================================
+1. COMANDOS BÁSICOS DE CONFIGURAÇÃO
+================================================================================
+
+1.1 VERIFICAR CONFIGURAÇÃO
+--------------------------------------------------------------------------------
+Verificar se o Git está instalado e configurado:
+
+git --version
+# Mostra a versão do Git instalada
+
+git config --list
+# Lista todas as configurações
+
+git config user.name
+# Mostra seu nome configurado
+
+git config user.email
+# Mostra seu email configurado
+
+1.2 CONFIGURAÇÃO INICIAL (se necessário)
+--------------------------------------------------------------------------------
+Caso precise reconfigurar:
+
+git config --global user.name "Seu Nome"
+git config --global user.email "seu.email@example.com"
+
+git config --global core.editor "code --wait"
+# Define VS Code como editor padrão
+
+
+================================================================================
+2. INICIANDO UM REPOSITÓRIO
+================================================================================
+
+2.1 CRIAR NOVO REPOSITÓRIO LOCAL
+--------------------------------------------------------------------------------
+Para começar um projeto do zero:
+
+cd caminho/do/seu/projeto
+git init
+# Inicializa um repositório Git na pasta atual
+
+Resultado:
+- Cria uma pasta oculta .git
+- O projeto agora está sob controle de versão
+
+2.2 CLONAR REPOSITÓRIO EXISTENTE
+--------------------------------------------------------------------------------
+Para baixar um projeto que já existe no GitHub:
+
+git clone https://github.com/usuario/nome-do-repositorio.git
+# Clona o repositório completo
+
+git clone https://github.com/usuario/nome-do-repositorio.git novo-nome
+# Clona e renomeia a pasta local
+
+
+================================================================================
+3. FLUXO BÁSICO DE TRABALHO
+================================================================================
+
+3.1 VERIFICAR STATUS
+--------------------------------------------------------------------------------
+Sempre verifique o status antes de fazer commit:
+
+git status
+# Mostra arquivos modificados, adicionados ou não rastreados
+
+Interpretando o resultado:
+- Vermelho: arquivos modificados não adicionados
+- Verde: arquivos prontos para commit
+- Untracked: arquivos novos não rastreados
+
+3.2 ADICIONAR ARQUIVOS
+--------------------------------------------------------------------------------
+Preparar arquivos para commit (staging):
+
+git add nome-do-arquivo.txt
+# Adiciona um arquivo específico
+
+git add .
+# Adiciona TODOS os arquivos modificados
+
+git add *.py
+# Adiciona todos os arquivos Python
+
+git add pasta/
+# Adiciona todos os arquivos de uma pasta
+
+3.3 REMOVER ARQUIVOS DO STAGING
+--------------------------------------------------------------------------------
+Se adicionou por engano:
+
+git reset nome-do-arquivo.txt
+# Remove do staging, mantém modificações
+
+git reset
+# Remove todos os arquivos do staging
+
+3.4 FAZER COMMIT
+--------------------------------------------------------------------------------
+Salvar as alterações no histórico:
+
+git commit -m "Mensagem descritiva do que foi feito"
+# Commit com mensagem curta
+
+git commit -m "Título do commit" -m "Descrição detalhada"
+# Commit com título e descrição
+
+git commit -am "Mensagem"
+# Adiciona E commita arquivos já rastreados (não funciona com arquivos novos)
+
+Boas práticas para mensagens:
+- Use verbos no imperativo: "Adiciona", "Corrige", "Remove"
+- Seja claro e objetivo
+- Exemplos bons:
+  * "Adiciona função de login"
+  * "Corrige bug no cálculo de impostos"
+  * "Atualiza documentação do README"
+
+
+================================================================================
+4. TRABALHANDO COM GITHUB
+================================================================================
+
+4.1 CONECTAR REPOSITÓRIO LOCAL AO GITHUB
+--------------------------------------------------------------------------------
+Depois de criar um repositório no GitHub:
+
+git remote add origin https://github.com/seu-usuario/seu-repositorio.git
+# Conecta seu repositório local ao remoto
+
+Verificar conexão:
+git remote -v
+# Mostra os repositórios remotos conectados
+
+4.2 ENVIAR ALTERAÇÕES (PUSH)
+--------------------------------------------------------------------------------
+Enviar commits para o GitHub:
+
+git push origin main
+# Envia para a branch main
+
+git push origin master
+# Envia para a branch master (repositórios antigos)
+
+git push -u origin main
+# Primeira vez: define main como branch padrão
+
+Após configurar com -u, pode usar apenas:
+git push
+# Envia para a branch padrão
+
+4.3 BAIXAR ALTERAÇÕES (PULL)
+--------------------------------------------------------------------------------
+Atualizar repositório local com mudanças do GitHub:
+
+git pull origin main
+# Baixa e mescla alterações da branch main
+
+git pull
+# Baixa da branch padrão configurada
+
+4.4 BUSCAR ALTERAÇÕES SEM MESCLAR
+--------------------------------------------------------------------------------
+git fetch origin
+# Baixa alterações mas não mescla automaticamente
+
+git merge origin/main
+# Depois, você pode mesclar manualmente
+
+
+================================================================================
+5. TRABALHANDO COM BRANCHES
+================================================================================
+
+5.1 GERENCIAR BRANCHES
+--------------------------------------------------------------------------------
+Branches permitem trabalhar em funcionalidades isoladas:
+
+git branch
+# Lista todas as branches locais
+
+git branch nome-da-branch
+# Cria uma nova branch
+
+git checkout nome-da-branch
+# Muda para a branch especificada
+
+git checkout -b nova-funcionalidade
+# Cria E muda para nova branch (atalho)
+
+git branch -d nome-da-branch
+# Deleta branch local (se já mesclada)
+
+git branch -D nome-da-branch
+# Força exclusão da branch
+
+5.2 MESCLAR BRANCHES
+--------------------------------------------------------------------------------
+git checkout main
+# Volta para branch principal
+
+git merge nome-da-branch
+# Mescla a branch especificada na atual
+
+git push origin main
+# Envia mesclagem para GitHub
+
+5.3 BRANCHES REMOTAS
+--------------------------------------------------------------------------------
+git push origin nome-da-branch
+# Envia branch para GitHub
+
+git push origin --delete nome-da-branch
+# Deleta branch no GitHub
+
+
+================================================================================
+6. HISTÓRICO E LOGS
+================================================================================
+
+6.1 VISUALIZAR HISTÓRICO
+--------------------------------------------------------------------------------
+git log
+# Mostra histórico completo de commits
+
+git log --oneline
+# Mostra histórico resumido (uma linha por commit)
+
+git log --graph --oneline
+# Mostra histórico com gráfico de branches
+
+git log -n 5
+# Mostra apenas os últimos 5 commits
+
+6.2 VISUALIZAR ALTERAÇÕES
+--------------------------------------------------------------------------------
+git diff
+# Mostra alterações não adicionadas (working directory)
+
+git diff --staged
+# Mostra alterações adicionadas (staging area)
+
+git diff HEAD
+# Mostra todas as alterações desde o último commit
+
+git show commit-hash
+# Mostra detalhes de um commit específico
+
+
+================================================================================
+7. DESFAZENDO ALTERAÇÕES
+================================================================================
+
+7.1 DESCARTAR MODIFICAÇÕES
+--------------------------------------------------------------------------------
+git checkout -- nome-do-arquivo.txt
+# Descarta mudanças não commitadas (volta ao último commit)
+
+git restore nome-do-arquivo.txt
+# Comando mais moderno (Git 2.23+)
+
+git checkout .
+# Descarta TODAS as mudanças não commitadas
+
+7.2 DESFAZER COMMITS
+--------------------------------------------------------------------------------
+git reset --soft HEAD~1
+# Desfaz último commit, mantém arquivos no staging
+
+git reset --mixed HEAD~1
+# Desfaz último commit, remove do staging
+
+git reset --hard HEAD~1
+# Desfaz último commit E descarta mudanças (CUIDADO!)
+
+git revert commit-hash
+# Cria novo commit que desfaz um commit específico
+
+7.3 MODIFICAR ÚLTIMO COMMIT
+--------------------------------------------------------------------------------
+git commit --amend -m "Nova mensagem"
+# Altera mensagem do último commit
+
+git add arquivo-esquecido.txt
+git commit --amend --no-edit
+# Adiciona arquivo ao último commit sem mudar mensagem
+
+
+================================================================================
+8. ARQUIVO .gitignore
+================================================================================
+
+8.1 CRIAR .gitignore
+--------------------------------------------------------------------------------
+Crie um arquivo chamado .gitignore na raiz do projeto:
+
+# Exemplo de .gitignore para Python
+
+# Ambientes virtuais
+venv/
+env/
+.venv/
+
+# Arquivos Python compilados
+__pycache__/
+*.pyc
+*.pyo
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
+
+# Variáveis de ambiente
+.env
+
+# Logs
+*.log
+
+Padrões úteis:
+*.extensao     # Ignora todos arquivos com essa extensão
+pasta/         # Ignora pasta inteira
+!importante.*  # Exceção: NÃO ignora arquivos importantes
+
+
+================================================================================
+9. FLUXO COMPLETO DE TRABALHO
+================================================================================
+
+9.1 PRIMEIRA VEZ - PROJETO NOVO
+--------------------------------------------------------------------------------
+# 1. Criar repositório no GitHub (pelo site)
+# 2. No terminal, na pasta do projeto:
+
+git init
+git add .
+git commit -m "Primeiro commit"
+git branch -M main
+git remote add origin https://github.com/seu-usuario/seu-repo.git
+git push -u origin main
+
+9.2 PRIMEIRA VEZ - CLONAR EXISTENTE
+--------------------------------------------------------------------------------
+git clone https://github.com/usuario/repositorio.git
+cd repositorio
+# Faça suas alterações
+git add .
+git commit -m "Descrição das alterações"
+git push
+
+9.3 FLUXO DIÁRIO DE TRABALHO
+--------------------------------------------------------------------------------
+# Antes de começar a trabalhar:
+git pull
+
+# Depois de fazer alterações:
+git status                              # Verifica o que mudou
+git add .                               # Adiciona arquivos
+git commit -m "Descrição do trabalho"   # Salva localmente
+git push                                # Envia para GitHub
+
+9.4 TRABALHAR COM FEATURE BRANCH
+--------------------------------------------------------------------------------
+# Criar branch para nova funcionalidade:
+git checkout -b feature/nova-funcionalidade
+
+# Fazer alterações e commits:
+git add .
+git commit -m "Implementa nova funcionalidade"
+
+# Enviar branch para GitHub:
+git push -u origin feature/nova-funcionalidade
+
+# Após aprovação, mesclar na main:
+git checkout main
+git pull
+git merge feature/nova-funcionalidade
+git push
+
+# Deletar branch:
+git branch -d feature/nova-funcionalidade
+git push origin --delete feature/nova-funcionalidade
+
+
+================================================================================
+10. COMANDOS ÚTEIS NO VS CODE
+================================================================================
+
+10.1 TERMINAL INTEGRADO
+--------------------------------------------------------------------------------
+Ctrl + '          # Abre/fecha terminal integrado
+Ctrl + Shift + '  # Cria novo terminal
+
+10.2 INTERFACE GIT DO VS CODE
+--------------------------------------------------------------------------------
+O VS Code tem interface visual para Git:
+
+Ctrl + Shift + G  # Abre painel Source Control
+
+No painel você pode:
+- Ver arquivos modificados
+- Adicionar ao staging (+ no arquivo)
+- Fazer commit (✓ no topo)
+- Push/Pull (... menu)
+- Ver diferenças (clicar no arquivo)
+
+10.3 EXTENSÕES ÚTEIS
+--------------------------------------------------------------------------------
+Git Graph       # Visualiza histórico graficamente
+GitLens         # Informações detalhadas de Git
+GitHub Pull     # Integração com Pull Requests
+
+
+================================================================================
+11. RESOLUÇÃO DE PROBLEMAS COMUNS
+================================================================================
+
+11.1 ERRO: REJECTED (NON-FAST-FORWARD)
+--------------------------------------------------------------------------------
+Quando alguém fez push antes de você:
+
+git pull --rebase origin main
+git push
+
+Ou:
+git pull origin main
+git push
+
+11.2 CONFLITOS DE MERGE
+--------------------------------------------------------------------------------
+Quando o Git não consegue mesclar automaticamente:
+
+git pull
+# Abre arquivos com conflitos marcados assim:
+<<<<<<< HEAD
+Seu código
+=======
+Código do GitHub
+>>>>>>> hash-do-commit
+
+# Edite manualmente, escolhendo o que manter
+# Depois:
+git add .
+git commit -m "Resolve conflitos"
+git push
+
+11.3 ERRO DE AUTENTICAÇÃO
+--------------------------------------------------------------------------------
+GitHub não aceita mais senha comum. Use:
+
+Personal Access Token (Token de Acesso Pessoal):
+1. GitHub → Settings → Developer settings
+2. Personal access tokens → Generate new token
+3. Use o token como senha
+
+Ou configure SSH:
+ssh-keygen -t ed25519 -C "seu.email@example.com"
+# Adicione a chave pública no GitHub
+
+11.4 DESFAZER PUSH
+--------------------------------------------------------------------------------
+Se enviou algo errado (CUIDADO com histórico compartilhado):
+
+git reset --hard HEAD~1
+git push --force origin main
+
+AVISO: --force reescreve histórico. Use apenas se trabalhar sozinho!
+
+
+================================================================================
+12. BOAS PRÁTICAS
+================================================================================
+
+COMMITS:
+- Faça commits pequenos e frequentes
+- Cada commit deve representar uma mudança lógica
+- Escreva mensagens claras e descritivas
+- Teste antes de commitar
+
+BRANCHES:
+- main/master: código estável, pronto para produção
+- develop: desenvolvimento em andamento
+- feature/nome: novas funcionalidades
+- bugfix/nome: correções de bugs
+- hotfix/nome: correções urgentes
+
+COLABORAÇÃO:
+- Sempre faça pull antes de push
+- Resolva conflitos localmente
+- Revise código antes de mesclar
+- Use Pull Requests para revisão em equipe
+
+SEGURANÇA:
+- NUNCA commite senhas ou chaves de API
+- Use .gitignore para arquivos sensíveis
+- Use variáveis de ambiente (.env)
+- Revise git status antes de commit
+
+
+================================================================================
+RESUMO RÁPIDO - COMANDOS ESSENCIAIS
+================================================================================
+
+CONFIGURAÇÃO:
+git config --global user.name "Nome"
+git config --global user.email "email"
+
+BÁSICO:
+git init                    # Inicia repositório
+git clone [url]             # Clona repositório
+git status                  # Verifica status
+git add .                   # Adiciona todos arquivos
+git commit -m "mensagem"    # Faz commit
+git push                    # Envia para GitHub
+git pull                    # Baixa do GitHub
+
+BRANCHES:
+git branch                  # Lista branches
+git checkout -b [nome]      # Cria e muda para branch
+git merge [nome]            # Mescla branch
+
+HISTÓRICO:
+git log --oneline           # Ver histórico
+git diff                    # Ver alterações
+
+DESFAZER:
+git restore [arquivo]       # Descarta mudanças
+git reset --soft HEAD~1     # Desfaz último commit
+
+REMOTO:
+git remote add origin [url] # Conecta ao GitHub
+git remote -v               # Ver repositórios remotos
+
+
+================================================================================
+RECURSOS ADICIONAIS
+================================================================================
+
+DOCUMENTAÇÃO OFICIAL:
+https://git-scm.com/doc
+https://docs.github.com/
+
+TUTORIAIS INTERATIVOS:
+https://learngitbranching.js.org/
+https://try.github.io/
+
+GUIA RÁPIDO:
+https://training.github.com/downloads/github-git-cheat-sheet.pdf
+
+VISUALIZADOR:
+https://git-school.github.io/visualizing-git/
+
+
+================================================================================
+                        CONATUS TECHNOLOGIES
+================================================================================
