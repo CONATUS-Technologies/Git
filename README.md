@@ -1,55 +1,171 @@
-# Git
+# Guia de Referência de Comandos Git
 
-# Guia de Comandos Git para GitHub
+Um guia para comandos Git e GitHub, abrangendo desde configurações básicas até fluxos de trabalho avançados.
 
-Este repositório contém um arquivo de referência completo com os principais comandos Git para uso com GitHub, organizado de forma estruturada para consulta rápida.
+## Sobre
 
-##  Conteúdo do Arquivo
+Este repositório contém um material de referência completo para comandos Git, desenvolvido para auxiliar desenvolvedores de todos os níveis no uso efetivo de controle de versão. O guia apresenta explicações claras, exemplos práticos e melhores práticas para desenvolvimento profissional.
 
-O arquivo `COMANDOS GIT PARA GITHUB.txt` abrange:
+## Conteúdo
 
-- **Configuração inicial** do Git
-- **Inicialização e clonagem** de repositórios
-- **Fluxo básico de trabalho** (status, add, commit)
-- **Integração com GitHub** (push, pull, remote)
-- **Trabalho com branches**
-- **Visualização de histórico e logs**
-- **Operações de desfazer alterações**
-- **Configuração de `.gitignore`**
-- **Fluxos completos de trabalho** (projeto novo, diário, feature branches)
-- **Integração com VS Code**
-- **Resolução de problemas comuns**
-- **Boas práticas** de uso
+O guia está organizado em 12 seções principais:
 
-##  Como Usar
+1. **Comandos Básicos de Configuração** - Instalação e configuração inicial
+2. **Iniciando um Repositório** - Criação e clonagem de repositórios
+3. **Fluxo Básico de Trabalho** - Verificação de status, staging e commits
+4. **Trabalhando com GitHub** - Conexão e sincronização com repositórios remotos
+5. **Trabalhando com Branches** - Criação, mesclagem e gerenciamento de branches
+6. **Histórico e Logs** - Visualização de commits e alterações
+7. **Desfazendo Alterações** - Reversão de modificações e commits
+8. **Arquivo .gitignore** - Configuração de arquivos ignorados
+9. **Fluxo Completo de Trabalho** - Workflows passo a passo para diferentes cenários
+10. **Comandos Úteis no VS Code** - Integração com Visual Studio Code
+11. **Resolução de Problemas Comuns** - Soluções para erros frequentes
+12. **Boas Práticas** - Diretrizes para desenvolvimento profissional
 
-1. Faça o download do arquivo `COMANDOS GIT PARA GITHUB.txt`
-2. Use como referência rápida para comandos Git no dia a dia
-3. Consulte as seções específicas conforme sua necessidade
+## Comandos Essenciais
 
-## 📋 Formato
+### Configuração
 
-O arquivo está organizado em seções numeradas com títulos claros, comandos em blocos de código e explicações concisas. Cada comando inclui comentários explicativos sobre sua função.
+```bash
+git config --global user.name "Seu Nome"
+git config --global user.email "seu.email@example.com"
+```
 
-##  Público-Alvo
+### Workflow Básico
 
-- Desenvolvedores iniciantes com Git/GitHub
-- Profissionais que desejam uma referência rápida
-- Equipes que precisam padronizar fluxos de trabalho
+```bash
+git init                    # Inicializa repositório
+git clone [url]             # Clona repositório
+git status                  # Verifica status
+git add .                   # Adiciona todos arquivos
+git commit -m "mensagem"    # Faz commit
+git push                    # Envia para GitHub
+git pull                    # Baixa do GitHub
+```
 
-##  Arquivo
+### Gerenciamento de Branches
 
-- **Nome:** `COMANDOS GIT PARA GITHUB.txt`
-- **Formato:** Texto simples (UTF-8)
-- **Tamanho:** 16,8 KB (17.244 bytes)
-- **Atualizado:** 20/01/2026
+```bash
+git branch                  # Lista branches
+git checkout -b [nome]      # Cria e muda para branch
+git merge [nome]            # Mescla branch
+```
 
-## Recursos Relacionados
+## Características Principais
 
-O arquivo inclui referências para:
-- Documentação oficial do Git
+- Explicações detalhadas em português brasileiro
+- Exemplos práticos para cada comando
+- Padrões de workflow para diferentes cenários
+- Seção dedicada à resolução de problemas
+- Diretrizes de segurança e boas práticas
+- Integração com VS Code
+- Referências para recursos adicionais
+
+## Público-Alvo
+
+- Iniciantes aprendendo Git e controle de versão
+- Desenvolvedores migrando de outros sistemas de controle de versão
+- Equipes estabelecendo padrões de workflow com Git
+- Profissionais que necessitam de referência rápida de comandos
+
+## Estrutura do Documento
+
+O documento foi desenvolvido para ser utilizado tanto como material de estudo linear quanto como referência rápida. Cada seção é autocontida e inclui:
+
+- Sintaxe dos comandos
+- Exemplos práticos de uso
+- Explicação dos resultados esperados
+- Observações importantes e avisos
+- Casos de uso reais
+
+## Workflows Incluídos
+
+### Primeira Vez - Projeto Novo
+
+```bash
+git init
+git add .
+git commit -m "Primeiro commit"
+git branch -M main
+git remote add origin https://github.com/seu-usuario/seu-repo.git
+git push -u origin main
+```
+
+### Fluxo Diário de Trabalho
+
+```bash
+git pull                              # Atualiza repositório
+git status                            # Verifica alterações
+git add .                             # Adiciona arquivos
+git commit -m "Descrição do trabalho" # Salva localmente
+git push                              # Envia para GitHub
+```
+
+### Feature Branch Workflow
+
+```bash
+git checkout -b feature/nova-funcionalidade
+git add .
+git commit -m "Implementa nova funcionalidade"
+git push -u origin feature/nova-funcionalidade
+```
+
+## Resolução de Problemas
+
+O guia inclui soluções detalhadas para:
+
+- Erros de rejected (non-fast-forward)
+- Conflitos de merge
+- Problemas de autenticação
+- Reversão de pushes indesejados
+- Configuração de SSH e tokens de acesso
+
+## Boas Práticas Destacadas
+
+### Commits
+
+- Faça commits pequenos e frequentes
+- Cada commit deve representar uma mudança lógica
+- Utilize mensagens claras e descritivas
+- Sempre teste antes de commitar
+
+### Branches
+
+- main/master: código estável para produção
+- develop: desenvolvimento em andamento
+- feature/nome: novas funcionalidades
+- bugfix/nome: correções de bugs
+- hotfix/nome: correções urgentes
+
+### Segurança
+
+- Nunca commite senhas ou chaves de API
+- Utilize .gitignore para arquivos sensíveis
+- Use variáveis de ambiente (.env)
+- Revise git status antes de cada commit
+
+## Recursos Adicionais
+
+O guia inclui links para:
+
+- Documentação oficial do Git e GitHub
 - Tutoriais interativos
-- Guias rápidos em PDF
-- Visualizadores de Git
+- Guias de referência rápida
+- Ferramentas de visualização
+
+## Integração com VS Code
+
+Inclui atalhos e comandos específicos para:
+
+- Terminal integrado
+- Interface Git nativa
+- Extensões recomendadas (Git Graph, GitLens, GitHub Pull Requests)
+
+## Licença
+
+Este material foi desenvolvido pela Conatus Technologies.
 
 ---
+
+**Nota**: Este é um guia de referência prático. Para documentação oficial completa, consulte [git-scm.com](https://git-scm.com/doc) e [docs.github.com](https://docs.github.com/).
